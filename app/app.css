@@ -3,6 +3,34 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-subdued: var(--color-gray-200);
+  --color-control: var(--color-gray-300);
+  --color-control-highlighted: var(--color-gray-50);
+
+  --animate-dropdown: dropdown-enter 200ms ease-in-out;
+  --animate-dropdown-exit: dropdown-exit 200ms ease-in-out;
+}
+
+@keyframes dropdown-enter {
+  0% {
+    opacity: 0;
+    transform: scaleY(0) translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(100%) translateY(0);
+  }
+}
+
+@keyframes dropdown-exit {
+  0% {
+    opacity: 1;
+    transform: scaleY(100%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0) translateY(-100%);
+  }
 }
 
 html,
@@ -11,5 +39,22 @@ body {
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
+
+    --color-subdued: var(--color-gray-900);
+    --color-control: var(--color-gray-800);
+    --color-control-highlighted: var(--color-gray-700);
   }
+}
+
+.dropdown-animation {
+  @apply data-[state=open]:animate-dropdown data-[state=closed]:animate-dropdown-exit;
+}
+
+/*
+ * .control-actionable is a item inside a control space
+ * (example: bg-control), this class adds the hover and focus
+ * styles. If needed, will add other states here.
+ */
+.control-actionable {
+  @apply hover:bg-control-highlighted focus:bg-control-highlighted;
 }

@@ -1,10 +1,10 @@
+import SectionHeading from "../components/typography/headings/SectionHeading";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "StevenLacks.com" },
+    { name: "My demo website", content: "Come and see..." },
   ];
 }
 
@@ -13,5 +13,9 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+  return (
+    <section className="p-4">
+      <SectionHeading>StevenLacks.com</SectionHeading>
+    </section>
+  );
 }
